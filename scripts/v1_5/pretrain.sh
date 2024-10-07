@@ -1,18 +1,18 @@
 #!/bin/bash
 
-deepspeed llava/train/train_mem.py \
+deepspeed llava/train/train_xformers.py \
     --deepspeed ./scripts/zero2.json \
     --model_name_or_path maywell/Synatra-7B-v0.3-dpo \
     --version plain \
-    --data_path /workspace/data/pretrain/ko_chat.json \
-    --image_folder /workspace/data/pretrain/images \
+    --data_path ./workspace/pretrain/ko_chat.json \
+    --image_folder ./workspace/pretrain/images \
     --vision_tower openai/clip-vit-large-patch14-336 \
     --mm_projector_type mlp2x_gelu \
     --tune_mm_mlp_adapter True \
     --mm_vision_select_layer -2 \
     --mm_use_im_start_end False \
     --mm_use_im_patch_token False \
-    --bf16 True \
+    --bf16 False \
     --output_dir ./checkpoints/KoLLaVA-v1.5-mlp2x-336px-pretrain-Synatra-7b \
     --num_train_epochs 1 \
     --per_device_train_batch_size 32 \
@@ -27,7 +27,7 @@ deepspeed llava/train/train_mem.py \
     --warmup_ratio 0.03 \
     --lr_scheduler_type "cosine" \
     --logging_steps 1 \
-    --tf32 True \
+    --tf32 False \
     --model_max_length 2048 \
     --gradient_checkpointing True \
     --dataloader_num_workers 4 \

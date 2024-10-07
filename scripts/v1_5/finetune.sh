@@ -1,11 +1,11 @@
 #!/bin/bash
 
-deepspeed llava/train/train_mem.py \
+deepspeed llava/train/train_xformers.py \
     --deepspeed ./scripts/zero3.json \
     --model_name_or_path maywell/Synatra-7B-v0.3-dpo \
     --version mistral \
-    --data_path /workspace/data/kollava_v1_5_instruct_mix612k.json \
-    --image_folder /workspace/data/ \
+    --data_path ./workspace/data/kollava_v1_5_instruct_mix612k.json \
+    --image_folder ./workspace/data/ \
     --vision_tower openai/clip-vit-large-patch14-336 \
     --pretrain_mm_mlp_adapter ./checkpoints/KoLLaVA-v1.5-mlp2x-336px-pretrain-Synatra-7b/mm_projector.bin \
     --mm_projector_type mlp2x_gelu \
@@ -14,10 +14,10 @@ deepspeed llava/train/train_mem.py \
     --mm_use_im_patch_token False \
     --image_aspect_ratio pad \
     --group_by_modality_length True \
-    --bf16 True \
+    --bf16 False \
     --output_dir ./checkpoints/kollava-v1.5-synatra7b \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 16 \
+    --per_device_train_batch_size 4 \
     --per_device_eval_batch_size 4 \
     --gradient_accumulation_steps 1 \
     --evaluation_strategy "no" \
@@ -29,7 +29,7 @@ deepspeed llava/train/train_mem.py \
     --warmup_ratio 0.03 \
     --lr_scheduler_type "cosine" \
     --logging_steps 1 \
-    --tf32 True \
+    --tf32 False \
     --model_max_length 2048 \
     --gradient_checkpointing True \
     --dataloader_num_workers 4 \

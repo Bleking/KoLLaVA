@@ -1,0 +1,5 @@
+FileNotFoundError: [Errno 2] No such file or directory: '/home/work/testdataset1/KoLLaVA/workspace/data/ekvqa/132303520220926102106.jpg'
+FileNotFoundError: [Errno 2] No such file or directory: '/home/work/testdataset1/KoLLaVA/workspace/data/ekvqa/151400320221018114627.jpg'
+FileNotFoundError: [Errno 2] No such file or directory: '/home/work/testdataset1/KoLLaVA/workspace/data/ekvqa/211000220221025115121.jpg'
+FileNotFoundError: [Errno 2] No such file or directory: '/home/work/testdataset1/KoLLaVA/workspace/data/ekvqa/152300620220713143334.jpg'
+
